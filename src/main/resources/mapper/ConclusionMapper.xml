@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsm.dao.ConclusionDao">
+
+
+    <insert id="insertConclusion" parameterType="com.vsm.entity.request.ConclusionInsertRequestModel">
+    insert into conclusion (time, c_userid, content) values (#{time}, #{c_userid}, #{content})
+  </insert>
+
+    <delete id="deleteById" parameterType="com.vsm.entity.request.ConclusionDeleteRequestModel">
+    delete from conclusion where id = #{id}
+  </delete>
+
+    <select id="selectById" parameterType="com.vsm.entity.request.ConclusionSelectRequestModel"
+            resultType="com.vsm.entity.Conclusion">
+     SELECT * from conclusion where c_userid = #{c_userid} order by time
+  </select>
+
+    <update id="updateConclusion" parameterType="com.vsm.entity.request.ConclusionSubmitRequestModel">
+    update conclusion set  content = #{content} where id = #{id}
+  </update>
+</mapper>

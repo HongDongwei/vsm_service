@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsm.dao.ScheduleDao">
+
+    <insert id="insertSchedule" parameterType="com.vsm.entity.request.ScheduleInsertRequestModel">
+    insert into schedule (time, place, thing, cycle, degree, label, isremind, type, state, startdate, enddate, s_userid, status)
+    values (#{time}, #{place}, #{thing}, #{cycle}, #{degree}, #{label}, #{isremind}, #{type}, #{state}, #{startdate},#{enddate}, #{s_userid}, #{status})
+  </insert>
+
+    <select id="selectByUserIdAndTime" parameterType="com.vsm.entity.request.ScheduleSelectRequestModel"
+            resultType="com.vsm.entity.Schedule">
+    SELECT * from schedule where s_userid = #{s_userid} and (time = #{time} or status = 1 ) order by degree
+  </select>
+
+    <delete id="deleteSchedule" parameterType="com.vsm.entity.request.ScheduleDeleteRequestModel">
+    delete from schedule where id = #{id}
+  </delete>
+
+    <update id="updateSchedule" parameterType="com.vsm.entity.request.ScheduleSubmitRequestModel">
+    update schedule set  state = #{state} where id = #{id}
+  </update>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vsm.dao.UserDao">
+
+
+  <select id="selectUserByUserName" resultType="com.vsm.entity.User">
+    select * from user where username = #{username}
+  </select>
+
+  <insert id="insertUser" parameterType="com.vsm.entity.User">
+    insert into user (username, password) values (#{username} , #{password})
+  </insert>
+
+  <update id="updateUser" parameterType="com.vsm.entity.request.InfoSubmitRequestModel" >
+    update user set  password = #{password} ,
+    email = #{email}, image = #{image} ,gender = #{gender} ,intro = #{intro} where id = #{id}
+  </update>
+
+</mapper>
